@@ -1,0 +1,315 @@
+---
+title: Componentes genéricos con React y TypeScript
+date: '2023-07-22'
+tags: ['react', 'TypeScript']
+draft: false
+summary: En este artículo, exploraremos cómo crear componentes genéricos con React y TypeScript para mejorar la calidad y mantenibilidad de nuestros proyectos.
+images: []
+layout: PostSimple
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+**React y TypeScript** son dos herramientas poderosas que se complementan perfectamente para el desarrollo de aplicaciones web modernas y escalables. Una de las ventajas más destacadas de utilizar <ContentTag code="typescript" /> en proyectos de <ContentTag code="react" /> es la capacidad de crear componentes genéricos, que ofrecen una gran flexibilidad y reusabilidad en el código.
+
+En este artículo, exploraremos cómo crear [componentes genéricos con React y TypeScript](/como-tipar-componentes-react-con-typescript) para mejorar la calidad y mantenibilidad de nuestros proyectos.
+
+## ¿Qué son los componentes genéricos?
+
+Antes de adentrarnos en la implementación, es importante entender qué son los **componentes genéricos en el contexto de React y TypeScript**. En términos simples, **un componente genérico es aquel que puede adaptarse a diferentes tipos de datos**, permitiendo así reutilizar la lógica del componente en distintos escenarios. Estos componentes son flexibles y pueden ser utilizados en el renderizado de distintas fuentes de datos con un mismo componente, reduciendo la duplicación de código y facilitando su mantenimiento.
+
+## Ventajas de los componentes genéricos
+
+La utilización de **componentes genéricos en React y TypeScript** proporciona múltiples beneficios, entre los cuales se destacan:
+
+1. **Re-usabilidad:** Al ser capaces de adaptarse a distintos tipos de datos, los componentes genéricos pueden ser empleados en diversos contextos, evitando así la repetición de código y fomentando la reutilización.
+
+2. **Mantenibilidad:** Al reducir la duplicación de código, los componentes genéricos simplifican el mantenimiento de la aplicación, ya que los cambios realizados en un componente se reflejarán en todas sus instancias.
+
+3. **Tipado seguro:** TypeScript nos permite definir interfaces y tipos específicos para los datos que reciben y manipulan los componentes genéricos, lo que aumenta la seguridad del código y ayuda a evitar errores comunes.
+
+4. **Escalabilidad:** Al facilitar la reutilización y mantenimiento del código, los componentes genéricos contribuyen a la escalabilidad del proyecto, permitiendo que este crezca de manera sostenible.
+
+## Como creamos un componentes genéricos con TypeScript?
+
+Ahora que comprendemos los beneficios de los componentes genéricos, veamos **cómo implementarlos en React con TypeScript**. A continuación, presentaremos un ejemplo de un componente genérico simple que renderiza una lista de elementos, independientemente del tipo de datos que contenga.
+
+Imaginemos que queremos crear un listado de datos simple (`number` o `string`), creamos un componente que recibe un listado de datos y los renderiza en una lista `<ul>`.
+
+### implementación
+
+```tsx
+import React from 'react'
+
+interface Props<T> {
+  items: T
+}
+
+export function List<T>({ items }: Props<T>) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+### Uso
+
+```tsx
+import React from 'react'
+
+import { List } from './List'
+
+export function App() {
+  const numbers = [1, 2, 3, 4, 5]
+  const names = ['John', 'Jane', 'Jack', 'Jill']
+
+  return (
+    <>
+      <List items={numbers} />
+      <List items={names} />
+    </>
+  )
+}
+```
+
+El ejemplo anterior es muy simple, incluso diría que no hace falta crear un componente genérico para renderizar datos primitivos, pero nos sirve para entender el concepto.
+
+En el siguiente ejemplo crearemos un **componente genérico de tabla** que recibe un array de objetos (de cualquier tipo) y renderiza una tabla con los datos.
+
+## Componente de tabla genérico
+
+Crearemos paso a paso un componente `Table` que recibe un array de objetos y un listado de propiedades que queremos renderizar en la tabla.
+
+### TableRow component
+
+El componente `TableRow` recibe un objeto específico y un array de propiedades que se desean mostrar en la tabla.
+
+```tsx
+import React from 'react'
+
+// Definimos una interfaz genérica para el objeto que contendrá los datos de la tabla
+interface TableRowProps<T> {
+  data: T
+  propertiesToShow: (keyof T)[] // Array de las propiedades que se desean mostrar
+}
+
+// Componente de fila de tabla que recibe un objeto y las propiedades que desea mostrar
+function TableRow<T>({ data, propertiesToShow }: TableRowProps<T>) {
+  return (
+    <tr>
+      {propertiesToShow.map((property, index) => (
+        <td key={index}>{data[property]}</td>
+      ))}
+    </tr>
+  )
+}
+```
+
+### Table component
+
+El componente Table acepta un array de objetos y un array de propiedades que se deben mostrar en todas las filas.
+
+```tsx
+// Definimos una interfaz genérica para el array de objetos que recibirá el componente de tabla
+interface TableProps<T> {
+  data: T[]
+  propertiesToShow: (keyof T)[] // Array de las propiedades que se desean mostrar en todas las filas
+}
+
+// Componente de tabla que utiliza el componente TableRow para renderizar los datos
+function Table<T>({ data, propertiesToShow }: TableProps<T>) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          {propertiesToShow.map((property, index) => (
+            <th key={index}>{property}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <TableRow key={index} data={item} propertiesToShow={propertiesToShow} />
+        ))}
+      </tbody>
+    </table>
+  )
+}
+```
+
+### Ejemplo de uso
+
+Crearemos un componente app, con algunos datos de ejemplo para probar nuestro componente de tabla.
+
+```tsx
+// Datos de ejemplo
+const cars = [
+  { name: 'Fiat 500', color: 'yellow', fuelType: 'diesel' },
+  { name: 'Fiat Panda', color: 'white', fuelType: 'electric' },
+  { name: 'Opel Corsa', color: 'red', fuelType: 'Electric' },
+]
+
+function App() {
+  return (
+    <div>
+      <h1>Componente de Tabla con React y TypeScript</h1>
+      <Table data={cars} propertiesToShow={['name', 'color']} />
+    </div>
+  )
+}
+
+export default App
+```
+
+El resultado será una tabla que mostrará solo las propiedades definidas en el array propertiesToShow para cada objeto en el array cars.
+
+Puedes ver el ejemplo completo en [CodeSandbox]('https://codesandbox.io/p/sandbox/generic-components-react-typescript-fl8f9z?file=%2Fsrc%2FApp.tsx%3A7%2C3')
+
+## Crear componentes genéricos con arrow functions
+
+Crear componentes genéricos usando arrow functions en React y TypeScript sigue la misma lógica que utilizando funciones regulares.
+
+La diferencia radica en la sintaxis, ya que las arrow functions son una forma más concisa de escribir funciones. A continuación, te mostraré cómo crear un ejemplo de componente genérico utilizando una arrow function:
+
+```tsx
+import React from 'react'
+
+// Definimos una interfaz genérica para el objeto que contendrá los datos de la tabla
+interface TableRowProps<T> {
+  data: T
+  propertiesToShow: (keyof T)[] // Array de las propiedades que se desean mostrar
+}
+
+// Componente de fila de tabla que recibe un objeto y las propiedades que desea mostrar
+const TableRow = <T,>({ data, propertiesToShow }: TableRowProps<T>) => {
+  return (
+    <tr>
+      {propertiesToShow.map((property, index) => (
+        <td key={index}>{data[property]}</td>
+      ))}
+    </tr>
+  )
+}
+
+// Definimos una interfaz genérica para el array de objetos que recibirá el componente de tabla
+interface TableProps<T> {
+  data: T[]
+  propertiesToShow: (keyof T)[] // Array de las propiedades que se desean mostrar en todas las filas
+}
+
+// Componente de tabla que utiliza el componente TableRow para renderizar los datos
+const Table = <T,>({ data, propertiesToShow }: TableProps<T>) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          {propertiesToShow.map((property, index) => (
+            <th key={index}>{property}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <TableRow key={index} data={item} propertiesToShow={propertiesToShow} />
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+// Datos de ejemplo
+const cars = [
+  { name: 'Fiat 500', color: 'yellow', fuelType: 'diesel' },
+  { name: 'Fiat Panda', color: 'white', fuelType: 'electric' },
+  { name: 'Opel Corsa', color: 'red', fuelType: 'Electric' },
+]
+
+function App() {
+  // Array de propiedades que queremos mostrar en la tabla
+  const propertiesToShow = ['name', 'color']
+
+  return (
+    <div>
+      <h1>Componente de Tabla con React y TypeScript</h1>
+      <Table data={cars} propertiesToShow={propertiesToShow} />
+    </div>
+  )
+}
+
+export default App
+```
+
+## Ejemplo del uso de componentes Genéricos en React y TypeScript
+
+Aquí te presento algunos ejemplos donde podrías aprovechar los componentes genéricos en React y TypeScript:
+
+1. **Lista de elementos genérica:** Imagina que tienes una aplicación con diferentes listas de elementos (por ejemplo, una lista de usuarios, una lista de productos y una lista de tareas). **Podrías crear un componente genérico** para mostrar cada elemento de la lista, lo que te permitiría reutilizar el mismo componente en diferentes secciones de la aplicación.
+
+```tsx
+interface ListItemProps<T> {
+  item: T
+}
+
+const ListItem = <T,>({ item }: ListItemProps<T>) => {
+  // Supongamos que todos los elementos tienen una propiedad 'name'
+  return <li>{item.name}</li>
+}
+```
+
+2. **Formulario genérico:** Si tienes múltiples formularios en tu aplicación con campos similares (por ejemplo, formularios de inicio de sesión, registro y perfil de usuario), podrías **crear un componente genérico para los campos comunes**, lo que simplificaría la creación de nuevos formularios.
+
+```tsx
+interface FormFieldProps<T> {
+  label: string
+  value: T
+  onChange: (value: T) => void
+}
+
+export const FormField = <T,>({ label, value, onChange }: FormFieldProps<T>) => {
+  return (
+    <div>
+      <label>{label}</label>
+      <input value={value} onChange={(e) => onChange(e.target.value as T)} />
+    </div>
+  )
+}
+```
+
+3. **Selector genérico:** Si tienes múltiples selectores en tu aplicación con opciones similares (por ejemplo, un selector de categorías, un selector de ciudades y un selector de idiomas), podrías **crear un componente genérico para los selectores comunes**.
+
+```tsx
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface SelectProps<T> {
+  options: Option[];
+  value: T;
+  onChange: (value: T) => void;
+}
+
+export const Select<T, >({ options, value, onChange }: SelectProps<T>) => {
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value as T)}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
+}
+```
+
+Estos son solo algunos ejemplos de cómo podrías aprovechar los **componentes genéricos para aumentar la reusabilidad y flexibilidad** de tu código en <ContentTag code="react" /> y <ContentTag code="typescript" />. Los componentes genéricos te permiten crear bloques de construcción más versátiles y fáciles de mantener en tu aplicación, reduciendo la duplicación de código y mejorando la escalabilidad. ¡Espero que estos ejemplos te sean útiles!
+
+## Conclusión
+
+Los componentes genéricos son una herramienta poderosa que React y TypeScript nos ofrecen para mejorar la reusabilidad, mantenibilidad y escalabilidad de nuestros proyectos. Permiten adaptar un componente a diferentes tipos de datos, lo que simplifica el código y mejora la estructura general de la aplicación. Al utilizar TypeScript, también obtenemos el beneficio adicional de un tipado seguro que nos ayuda a detectar errores temprano en el proceso de desarrollo.
+
+En resumen, al dominar el arte de crear componentes genéricos con React y TypeScript, estaremos en el camino correcto hacia la construcción de aplicaciones web sólidas y fáciles de mantener. Así que, ¡manos a la obra y a aprovechar todo el potencial que nos brindan estas tecnologías! Sin abusar, claro está.
