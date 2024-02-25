@@ -1,5 +1,6 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Inter } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
@@ -81,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SectionContainer>
             <div className="flex h-screen flex-col justify-between font-sans">
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                {/* <Header isHomePage /> */}
+                <SpeedInsights />
                 <main className="mb-auto">{children}</main>
               </SearchProvider>
               <Footer />
