@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { slug } from 'github-slugger'
 
 import Link from '@/components/Link'
-import classnames from 'classnames'
+import clsx from 'clsx'
 import { default as TagData } from '../../app/tag-data.json'
 
 import styles from './Tag.module.css'
@@ -34,7 +34,7 @@ export const TagMenu: FC<TagListProps> = ({ className }) => {
     .filter(({ icon }) => Boolean(icon))
 
   return (
-    <div className={classnames(styles.list, className)}>
+    <div className={clsx(styles.list, className)}>
       {tags
         .sort((accumulate, current) => accumulate.name.localeCompare(current.name))
         .map(({ name, slug, code, icon, count }) => {
@@ -42,12 +42,12 @@ export const TagMenu: FC<TagListProps> = ({ className }) => {
             <Link
               title={`Ver todos ${count} tips etiquetados en ${name}`}
               href={slug}
-              className={classnames(styles.link, styles[`icon-${code}`])}
+              className={clsx(styles.link, styles[`icon-${code}`])}
               key={code}
             >
               {icon && (
                 <img
-                  className={classnames(styles.icon, [styles[`icon-${name}`]])}
+                  className={clsx(styles.icon, [styles[`icon-${name}`]])}
                   src={icon.src}
                   alt={name}
                 />
