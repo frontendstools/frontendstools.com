@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: *.pdf$
 Disallow: /*?*
 Allow: /*_next/image*
 Sitemap: https://frontendstools.com/sitemap.xml
