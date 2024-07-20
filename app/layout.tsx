@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
 
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const font_inter = Inter({
   subsets: ['latin'],
@@ -66,6 +66,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       data-theme="light"
     >
+      <GoogleTagManager gtmId="G-ZP4QCJZBGX" />
+      <GoogleAnalytics gaId="G-ZP4QCJZBGX" />
+
+      <link href="https://www.googletagmanager.com" rel="preconnect" />
+      <link href="https://www.google-analytics.com" rel="preconnect" />
+
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
@@ -87,7 +93,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </div>
         </SectionContainer>
-        <GoogleAnalytics gaId={`${siteMetadata?.analytics?.googleAnalytics}`} />
       </body>
     </html>
   )
