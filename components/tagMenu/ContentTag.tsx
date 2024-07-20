@@ -23,7 +23,7 @@ export const ContentTag: FC<ITagProps> = ({ code }) => {
   }
 
   return (
-    <CustomLink title={`Ver todos tips etiquetados en ${tag}`} href={tag}>
+    <CustomLink className="mr-1" title={`Ver todos tips etiquetados en ${tag}`} href={tag}>
       {tag}
     </CustomLink>
   )

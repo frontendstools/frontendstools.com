@@ -15,7 +15,7 @@ export const Header: FC<IHeaderProps> = ({ isHomePage = false }) => {
       <HeaderContainer>
         <div className="space-y-2 pt-8 text-center md:space-y-5 md:pt-6">
           <div className="flex items-center justify-center gap-4">
-            <h1 className="inline-block text-4xl  font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            <h1 className="inline-block text-4xl  font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               {siteMetadata.headerTitle}
             </h1>
             <HeaderLinks />
@@ -23,7 +23,7 @@ export const Header: FC<IHeaderProps> = ({ isHomePage = false }) => {
           <h2
             title={siteMetadata.description}
             aria-label={siteMetadata.description}
-            className="text-xl leading-7 text-gray-500 dark:text-gray-400 md:text-2xl"
+            className="text-xl leading-7 md:text-2xl"
           >
             {siteMetadata.description}
           </h2>

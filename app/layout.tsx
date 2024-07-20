@@ -1,5 +1,5 @@
 import 'css/tailwind.css'
-import 'pliny/search/algolia.css'
+// import 'pliny/search/algolia.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Inter } from 'next/font/google'
@@ -9,7 +9,6 @@ import { Header } from '@/components/header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
-import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 
 const font_inter = Inter({
@@ -65,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang={siteMetadata.language}
       className={`${font_inter.variable} scroll-smooth`}
       suppressHydrationWarning
+      data-theme="light"
     >
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
@@ -76,19 +76,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1F2937" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
-      <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
-        <ThemeProviders>
-          <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-          <SectionContainer>
-            <div className="flex h-screen flex-col justify-between font-sans">
-              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                <SpeedInsights />
-                <main className="mb-auto">{children}</main>
-              </SearchProvider>
-              <Footer />
-            </div>
-          </SectionContainer>
-        </ThemeProviders>
+      <body>
+        <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+        <SectionContainer>
+          <div className="flex h-screen flex-col justify-between font-sans">
+            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+              <SpeedInsights />
+              <main className="mb-auto">{children}</main>
+            </SearchProvider>
+            <Footer />
+          </div>
+        </SectionContainer>
       </body>
     </html>
   )

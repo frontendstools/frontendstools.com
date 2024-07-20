@@ -15,7 +15,7 @@ interface IPostFooterProps {
 export const PostFooter: FC<IPostFooterProps> = ({ slug, next, prev }) => {
   return (
     <>
-      <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+      <div className="pb-6 pt-6 text-sm">
         <CustomLink href={discussUrl(slug)} rel="nofollow">
           {'Discusión en Twitter'}
         </CustomLink>

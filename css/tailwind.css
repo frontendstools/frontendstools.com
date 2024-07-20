@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-javascript: #f7df1e;
+  --color-typescript: #017acb;
+  --color-html: #f98745;
+  --color-css: #039be5;
+  --color-node: #339933;
+  --color-react: #61dafb;
+  --color-next: #000;
+
+  --details-bg: #f3f4f6;
+
+  /* link colors */
+  --content-link: #3b82f6;
+  --content-link-hover: #3b82f6;
+  --content-link-opacity: 0.7;
+  --content-link-opacity-hover: 1;
+  --content-link-border: #cce4f6;
+  --content-link-border-hover: #cce4f6;
+  --content-link-bg: transparent;
+  --content-link-bg-hover: #cce4f6;
+}
+
+[data-theme='dark'] {
+  --details-bg: #29323c;
+
+  /* link colors */
+  --content-link: var(--nc);
+  --content-link-border: var(--nc);
+  --content-link-bg: transparent;
+  --content-link-bg-hover: transparent;
+}
+
 .task-list-item::before {
   @apply hidden;
 }
@@ -32,4 +64,36 @@ input:-webkit-autofill:focus {
 
 .katex-display {
   overflow: auto hidden;
+}
+
+#article-content {
+  a {
+    border-bottom: solid 2px var(--content-link-border);
+    color: var(--content-link);
+    opacity: var(--content-link-opacity);
+
+    &:hover {
+      background-color: var(--content-link-bg-hover);
+      border-bottom-color: var(--content-link-hover);
+      color: var(--content-link-hover);
+      opacity: var(--content-link-opacity-hover);
+    }
+
+    @apply no-underline;
+
+    /* @apply hover:underline dark:border-b-transparent dark:bg-transparent dark:hover:border-b-transparent dark:hover:bg-transparent dark:hover:text-blue-500; */
+  }
+
+  details {
+    background-color: var(--details-bg);
+    @apply rounded-md open:pb-2;
+
+    summary {
+      @apply m-0 cursor-pointer select-none px-4;
+    }
+  }
+
+  blockquote {
+    @apply my-4 border-l-4 border-neutral-200 pl-4 text-neutral-500;
+  }
 }

@@ -3,9 +3,9 @@
 }
 
 .text {
-  @apply text-4xl mr-1;
+  @apply mr-1 text-4xl;
 }
 
 .tips {
-  @apply bg-gray-800 rounded p-1 text-white;
+  @apply bg-primary text-primary-content rounded p-1;
 }
