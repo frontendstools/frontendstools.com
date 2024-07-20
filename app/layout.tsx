@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       data-theme="light"
     >
-      <GoogleTagManager gtmId="G-ZP4QCJZBGX" />
+      <GoogleTagManager gtmId="GTM-MM6VNTJM" />
       <GoogleAnalytics gaId="G-ZP4QCJZBGX" />
 
       <link href="https://www.googletagmanager.com" rel="preconnect" />
