@@ -3,13 +3,14 @@ import 'css/tailwind.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Inter } from 'next/font/google'
-import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import { Header } from '@/components/header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
+
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const font_inter = Inter({
   subsets: ['latin'],
@@ -77,7 +78,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
       <body>
-        <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
         <SectionContainer>
           <div className="flex h-screen flex-col justify-between font-sans">
             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
@@ -87,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </div>
         </SectionContainer>
+        <GoogleAnalytics gaId={`${siteMetadata?.analytics?.googleAnalytics}`} />
       </body>
     </html>
   )
