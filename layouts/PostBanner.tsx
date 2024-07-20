@@ -26,7 +26,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
     <SectionContainer>
       <ScrollTopAndComment />
       <article id="article-content">
-        <div className="space-y-1 pb-10 text-center ">
+        <div className="space-y-1 pb-10 text-center">
           <div className="w-full">
             <Bleed>
               <div className="relative aspect-[2/1] w-full">
@@ -40,7 +40,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
         </div>
         <div className="prose max-w-none py-4 dark:prose-invert">{children}</div>
         {siteMetadata.comments && (
-          <div className="pb-6 pt-6 text-center " id="comment">
+          <div className="pb-6 pt-6 text-center" id="comment">
             <Comments slug={slug} />
           </div>
         )}

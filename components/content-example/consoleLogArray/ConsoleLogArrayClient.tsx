@@ -50,7 +50,7 @@ export const ConsoleLogArrayClient: FC<IConsoleLogArrayProps> = ({
       </span>
       <div className="flex">
         <button
-          className="mr-2 block w-1/2 rounded border border-gray-200 bg-white  px-2 py-1 text-gray-400 hover:border-gray-400 hover:text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-900 dark:hover:text-gray-200"
+          className="mr-2 block w-1/2 rounded border border-gray-200 bg-white px-2 py-1 text-gray-400 hover:border-gray-400 hover:text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-900 dark:hover:text-gray-200"
           onClick={() =>
             exampleArrayMethods.runExample(arrayMethod, arrayItems, setArrayItems, setReturnValue)
           }

@@ -12,7 +12,7 @@ export default function Home({ posts }) {
     <>
       <TagMenu />
       <div className="divide-y">
-        <section className="divide-y ">
+        <section className="divide-y">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags } = post
@@ -37,7 +37,7 @@ export default function Home({ posts }) {
                           ))}
                         </div>
                       </header>
-                      <div className="prose max-w-none ">{summary}</div>
+                      <div className="prose max-w-none">{summary}</div>
                     </div>
                     <div className="text-base font-medium leading-6">
                       <Link href={`/blog/${slug}`} aria-label={`Read more: "${title}"`}>

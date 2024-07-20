@@ -36,7 +36,7 @@ export const RevertString: FC = () => {
         {value && (
           <button
             onClick={() => setValue('')}
-            className="absolute right-3 z-10 flex h-8 w-8 justify-center rounded-full border  border-gray-300 font-bold hover:border-red-300 hover:bg-red-100 hover:text-red-400"
+            className="absolute right-3 z-10 flex h-8 w-8 justify-center rounded-full border border-gray-300 font-bold hover:border-red-300 hover:bg-red-100 hover:text-red-400"
           >
             &#88;
           </button>

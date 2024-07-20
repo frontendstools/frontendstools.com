@@ -2,8 +2,8 @@
   @apply m-auto mb-8 flex max-w-2xl flex-wrap justify-center gap-4;
 }
 .link {
-  @apply inline-flex items-center rounded-full border-2 px-2 py-2 text-sm font-bold  uppercase transition duration-300 ease-in-out;
-  @apply dark:border-neutral border-red-300;
+  @apply inline-flex items-center rounded-full border-2 px-2 py-2 text-sm font-bold uppercase transition duration-300 ease-in-out;
+  @apply border-red-300 dark:border-neutral;
 }
 .link:hover {
 }

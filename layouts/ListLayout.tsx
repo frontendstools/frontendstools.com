@@ -80,7 +80,7 @@ export default function ListLayout({
     <>
       <div className="divide-y">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="md:leading-14 text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl">
             {title}
           </h1>
           <div className="relative max-w-lg">
@@ -91,7 +91,7 @@ export default function ListLayout({
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search articles"
-                className="block w-full rounded-md border px-4  py-2"
+                className="block w-full rounded-md border px-4 py-2"
               />
             </label>
             <svg
@@ -132,7 +132,7 @@ export default function ListLayout({
                         {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                       </div>
                     </div>
-                    <div className="prose max-w-none ">{summary}</div>
+                    <div className="prose max-w-none">{summary}</div>
                   </div>
                 </article>
               </li>

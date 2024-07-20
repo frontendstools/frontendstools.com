@@ -29,7 +29,7 @@ const Header = () => {
         {headerNavLinks
           .filter((link) => link.href !== '/')
           .map((link) => (
-            <Link key={link.title} href={link.href} className="dark:text-gray-100 sm:block">
+            <Link key={link.title} href={link.href} className="sm:block dark:text-gray-100">
               {link.title}
             </Link>
           ))}

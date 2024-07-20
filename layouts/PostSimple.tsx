@@ -25,11 +25,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
       <ScrollTopAndComment />
       <article id="article-content">
         <header>
-          <div className="space-y-1 border-b pb-10 text-center ">
+          <div className="space-y-1 border-b pb-10 text-center">
             <dl>
               <div>
                 <dt className="sr-only">Published on</dt>
-                <dd className="text-base font-medium leading-6 ">
+                <dd className="text-base font-medium leading-6">
                   <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                 </dd>
               </div>
@@ -41,7 +41,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         </header>
         <div className="grid-rows-[auto_1fr] divide-y pb-8 xl:divide-y-0">
           <div className="divide-y xl:col-span-3 xl:row-span-2 xl:pb-0">
-            <div className="prose max-w-none pb-8 pt-10 dark:prose-invert lg:prose-lg xl:prose-xl">
+            <div className="prose max-w-none pb-8 pt-10 lg:prose-lg xl:prose-xl dark:prose-invert">
               {children}
             </div>
           </div>

@@ -35,7 +35,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
   const SocialSvg = components[kind]
 
   return (
-    <a className="text-sm " target="_blank" rel="noopener noreferrer" href={href}>
+    <a className="text-sm" target="_blank" rel="noopener noreferrer" href={href}>
       <span className="sr-only">{kind}</span>
       <SocialSvg className={`fill-current h-${size} w-${size}`} />
     </a>

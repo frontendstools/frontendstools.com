@@ -7,5 +7,5 @@
 }
 
 .tips {
-  @apply bg-primary text-primary-content rounded p-1;
+  @apply rounded bg-primary p-1 text-primary-content;
 }
