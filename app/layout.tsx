@@ -1,10 +1,9 @@
 import 'css/tailwind.css'
 // import 'pliny/search/algolia.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-
+import { Analytics } from '@vercel/analytics/react'
 import { Inter } from 'next/font/google'
 import { SearchProvider, SearchConfig } from 'pliny/search'
-import { Header } from '@/components/header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
@@ -76,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1F2937" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+      <Analytics mode="development" />
 
       <body>
         <SectionContainer>

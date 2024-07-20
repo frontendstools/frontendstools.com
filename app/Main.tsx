@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { TagMenu } from '@/components/tagMenu/TagList'
+import { sendGTMEvent } from '@next/third-parties/google'
 
 const MAX_DISPLAY = 15
 
