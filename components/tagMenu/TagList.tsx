@@ -42,7 +42,7 @@ export const TagMenu: FC<TagListProps> = ({ className }) => {
             <Link
               title={`Ver todos ${count} tips etiquetados en ${name}`}
               href={slug}
-              className={clsx(styles.link, styles[`icon-${code}`])}
+              className={clsx(styles.link, styles[`icon-${code}`], `menu-button-${name}`)}
               key={code}
             >
               {icon && (

@@ -12,7 +12,7 @@ const SearchButton = () => {
       siteMetadata.search.provider === 'algolia' ? AlgoliaButton : KBarButton
 
     return (
-      <SearchButtonWrapper aria-label="Search">
+      <SearchButtonWrapper aria-label="Search" id="search-button">
         <FaSearch size={20} />
       </SearchButtonWrapper>
     )

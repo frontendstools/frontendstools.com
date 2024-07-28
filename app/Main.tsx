@@ -41,7 +41,11 @@ export default function Home({ posts }) {
                       <div className="prose max-w-none">{summary}</div>
                     </div>
                     <div className="text-base font-medium leading-6">
-                      <Link href={`/blog/${slug}`} aria-label={`Read more: "${title}"`}>
+                      <Link
+                        className="link-read-more"
+                        href={`/blog/${slug}`}
+                        aria-label={`Read more: "${title}"`}
+                      >
                         Leer completo &rarr;
                       </Link>
                     </div>
