@@ -14,16 +14,14 @@ interface IPostFooterProps {
 
 export const PostFooter: FC<IPostFooterProps> = ({ slug, next, prev }) => {
   return (
-    <>
-      <div className="pb-6 pt-6 text-sm">
-        <CustomLink href={discussUrl(slug)} rel="nofollow">
-          {'Discusión en Twitter'}
-        </CustomLink>
-        {` • `}
-        <CustomLink href={editUrl(slug)}>
-          {' ¿Algún error? Edita el artículo en github'}
-        </CustomLink>{' '}
-      </div>
-    </>
+    <div className="flex justify-center gap-2 pb-6 pt-6 text-sm">
+      <CustomLink href={discussUrl(slug)} rel="nofollow">
+        {'Discusión en Twitter'}
+      </CustomLink>
+      {` • `}
+      <CustomLink href={editUrl(slug)}>
+        {' ¿Algún error? Edita el artículo en github'}
+      </CustomLink>{' '}
+    </div>
   )
 }

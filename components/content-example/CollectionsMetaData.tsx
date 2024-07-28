@@ -26,10 +26,11 @@ interface GithubRepoProps {
 const ItemLink: FC<ItemProps> = ({ title, url, icon }) => {
   return (
     <CustomLink
-      className="flex items-center rounded-md border p-3 text-center hover:bg-gray-100 hover:text-blue-400 dark:border-gray-700 dark:md:hover:bg-gray-800"
+      className="flex items-center"
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      title={title}
     >
       {icon} {title}
     </CustomLink>
@@ -41,11 +42,13 @@ export const CollectionMetaData: FC<ICollectionMetaDataProps> = ({
   github,
   documentation,
 }) => (
-  <div className="flex justify-center gap-4 rounded-xl py-4 dark:border-gray-800 dark:bg-gray-700">
+  <div className="flex gap-4 rounded-xl py-4">
     {web && <ItemLink title={web.title} url={web.url} icon={<ChromeIcon className="mr-2" />} />}
+
     {github && (
       <ItemLink title={github.title} url={github.url} icon={<GithubIcon className="mr-2" />} />
     )}
+
     {documentation && (
       <ItemLink
         title={documentation.title}

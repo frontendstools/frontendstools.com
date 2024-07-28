@@ -26,17 +26,15 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
       <article id="article-content">
         <header>
           <div className="space-y-1 border-b pb-10 text-center">
+            <PageTitle>{title}</PageTitle>
             <dl>
-              <div>
-                <dt className="sr-only">Published on</dt>
-                <dd className="text-base font-medium leading-6">
-                  <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                </dd>
-              </div>
+              <dt className="sr-only">Fecha publicación</dt>
+              <dd className="text-base font-medium leading-6 text-gray-500">
+                <time aria-label="fecha de publicación" dateTime={date}>
+                  {formatDate(date, siteMetadata.locale)}
+                </time>
+              </dd>
             </dl>
-            <div>
-              <PageTitle>{title}</PageTitle>
-            </div>
           </div>
         </header>
         <div className="grid-rows-[auto_1fr] divide-y pb-8 xl:divide-y-0">
@@ -57,15 +55,21 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           <footer>
             <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
               {prev && prev.path && (
-                <div className="pt-4 xl:pt-8">
-                  <CustomLink href={`/${prev.path}`} aria-label={`Previous post: ${prev.title}`}>
+                <div className="pt-4 text-left xl:pt-8">
+                  <CustomLink
+                    href={`/${prev.path}`}
+                    aria-label={`Artículo anterior: ${prev.title}`}
+                  >
                     &larr; {prev.title}
                   </CustomLink>
                 </div>
               )}
               {next && next.path && (
-                <div className="pt-4 xl:pt-8">
-                  <CustomLink href={`/${next.path}`} aria-label={`Next post: ${next.title}`}>
+                <div className="pt-4 text-right xl:pt-8">
+                  <CustomLink
+                    href={`/${next.path}`}
+                    aria-label={`Siguiente artículo: ${next.title}`}
+                  >
                     {next.title} &rarr;
                   </CustomLink>
                 </div>

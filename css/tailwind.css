@@ -96,4 +96,8 @@ input:-webkit-autofill:focus {
   blockquote {
     @apply my-4 border-l-4 border-neutral-200 pl-4 text-neutral-500;
   }
+
+  li {
+    @apply my-0;
+  }
 }

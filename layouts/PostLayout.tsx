@@ -113,6 +113,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div>
                   </div>
                 )}
+
                 {(next || prev) && (
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && prev.path && (
@@ -121,6 +122,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <Link href={`/${prev.path}`}>{prev.title}</Link>
                       </div>
                     )}
+
                     {next && next.path && (
                       <div>
                         <h2 className="text-xs uppercase tracking-wide">Artículo siguiente</h2>
